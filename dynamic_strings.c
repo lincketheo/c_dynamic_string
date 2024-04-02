@@ -8,16 +8,21 @@
 #include <stdbool.h>
 #include <stdarg.h>
 
-void bi_error(const char *msg_fmt, ...) {
+/**
+ * Prints an error originating from dynamic strings
+ * @param msg_fmt The format of the message
+ * @param ... Extra parameters to feed into msg_format
+ */
+static void ds_error(const char *msg_fmt, ...) {
     va_list args;
     va_start(args, msg_fmt);
-    printf("c_big_int error: ");
+    printf("c_dynamic_string error: ");
     vprintf(msg_fmt, args);
 }
 
 bool array_exists_guard(struct string *array) {
     if (!array) {
-        bi_error("Passed string is uninitialized\n");
+        ds_error("Passed string is uninitialized\n");
         return true;
     }
     return false;
@@ -28,7 +33,7 @@ void create_string(struct string *string, size_t initial_capacity) {
 
     string->head = malloc(initial_capacity + 1); // Alloc one more for null terminator
     if (!string->head) {
-        bi_error("Couldn't create string\n");
+        ds_error("Couldn't create string\n");
         return;
     }
     string->size = 0;
@@ -58,7 +63,7 @@ void increase_array_size(struct string *array) {
 
     char *new_head = realloc(array->head, new_capacity + 1);
     if (new_head == NULL) {
-        bi_error("Failed to increase string size\n");
+        ds_error("Failed to increase string size\n");
         return;
     }
     array->head = new_head;
@@ -81,8 +86,8 @@ void append_string(struct string *string, const char *elements, size_t elements_
 void delete_string(struct string *string, size_t num_elements) {
     array_exists_guard(string);
 
-    if (string->size - num_elements < 0) {
-        bi_error("Trying to remove more elements than string has\n");
+    if (string->size < num_elements) {
+        ds_error("Trying to remove %zu elements, but string has %zu elements\n", num_elements, string->size);
         return;
     }
 
