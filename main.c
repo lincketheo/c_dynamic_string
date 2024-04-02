@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <dynamic_strings.h>
+#include "dynamic_strings.h"
 
 int main() {
     struct string a;

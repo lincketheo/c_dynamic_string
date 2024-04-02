@@ -1,7 +1,7 @@
 //
 // Created by Theo Lincke on 4/1/24.
 //
-#include <dynamic_strings.h>
+#include "dynamic_strings.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

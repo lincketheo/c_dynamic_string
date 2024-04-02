@@ -3,7 +3,7 @@ project(dynamic_strings C)
 
 set(CMAKE_C_STANDARD 11)
 include_directories(include)
-add_library(dynstr src/dynamic_strings.c)
+add_library(dynstr dynamic_strings.c)
 target_include_directories(dynstr PUBLIC include)
 
 add_executable(main main.c)
