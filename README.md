@@ -1,6 +1,33 @@
-#include <stdio.h>
-#include <string.h>
-#include "dynamic_strings.h"
+# Version 0.0.1
+
+**State:** Pretty good. Just gotta add real tests
+
+**Need to do Features:**
+
+- Add real tests
+
+# Usage:
+
+The main object you're working with is `string`
+
+Before using a string, you must `create_string` and after, you must `destroy_string`
+
+Available API methods:
+
+- `reset_string`
+- `append_string`
+- `delete_string`
+- `new_random_string`
+- `copy_string`
+
+```c
+
+#include
+<stdio.h>
+#include
+<string.h> // strlen
+#include
+"dynamic_strings.h"
 
 int main() {
     struct string a;
@@ -23,3 +50,5 @@ int main() {
     destroy_string(&a);
     return 0;
 }
+
+```
